@@ -31,8 +31,9 @@ mkdir -p $HOME/.config/fish/completions/
 rye self completion -s fish > $HOME/.config/fish/completions/rye.fish
 
 
-# Add fish configs to its position
+# Add fish configs and make it start when a new shell opens
 cat ./config.fish > $HOME/.config/fish/config.fish
+echo 'fish' >> $HOME/.bashrc
 
 fish ./2_new_install_setup.fish
 
