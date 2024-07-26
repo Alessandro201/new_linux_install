@@ -19,8 +19,9 @@ git clone https://github.com/Alessandro201/kickstart.nvim.git "${XDG_CONFIG_HOME
 
 
 # Install rye
-curl -sSf https://rye.astral.sh/get | bash
+curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 source .bash_profile
+mkdir -p ~/.config/fish/completions/
 rye self completion -s fish > ~/.config/fish/completions/rye.fish
 
 
