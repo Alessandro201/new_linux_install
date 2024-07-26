@@ -1,3 +1,6 @@
+#/bin/bash
+
+# Install pixi
 curl -fsSL https://pixi.sh/install.sh | bash
 
 source $HOME/.bash_profile
@@ -12,6 +15,7 @@ pixi global install ruff
 pixi global install jq
 pixi global install tmux
 pixi global install fish
+pixi global install git
 
 
 # Install nvim configs
@@ -20,10 +24,14 @@ git clone https://github.com/Alessandro201/kickstart.nvim.git "${XDG_CONFIG_HOME
 
 # Install rye
 curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
-source $HOME/bash_profile
+
+source $HOME/.bash_profile
+
 mkdir -p $HOME/.config/fish/completions/
 rye self completion -s fish > $HOME/.config/fish/completions/rye.fish
 
+
+# Add fish configs to its position
 cat ./config.fish > $HOME/.config/fish/config.fish
 
 fish ./2_new_install_setup.fish
