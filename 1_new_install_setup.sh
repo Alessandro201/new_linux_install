@@ -24,6 +24,7 @@ source .bash_profile
 mkdir -p ~/.config/fish/completions/
 rye self completion -s fish > ~/.config/fish/completions/rye.fish
 
+cat ./config.fish > ~/.config/fish/config.fish
 
 fish ./new_install_setup.fish
 
