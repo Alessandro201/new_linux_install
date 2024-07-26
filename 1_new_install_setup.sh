@@ -26,5 +26,5 @@ rye self completion -s fish > $HOME/.config/fish/completions/rye.fish
 
 cat ./config.fish > $HOME/.config/fish/config.fish
 
-fish ./new_install_setup.fish
+fish ./2_new_install_setup.fish
 
