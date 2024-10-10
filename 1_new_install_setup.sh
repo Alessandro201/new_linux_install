@@ -3,7 +3,9 @@
 # Install pixi
 curl -fsSL https://pixi.sh/install.sh | bash
 
-source $HOME/.bash_profile
+if test -f $HOME/.bash_profile ; then
+    source $HOME/.bash_profile
+fi
 
 pixi global install nvim
 pixi global install fd-find
@@ -25,7 +27,10 @@ git clone https://github.com/Alessandro201/kickstart.nvim.git "${XDG_CONFIG_HOME
 # Install rye
 curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
 
-source $HOME/.bash_profile
+
+if test -f $HOME/.bash_profile ; then
+    source $HOME/.bash_profile
+fi
 
 mkdir -p $HOME/.config/fish/completions/
 rye self completion -s fish > $HOME/.config/fish/completions/rye.fish

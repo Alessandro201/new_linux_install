@@ -13,7 +13,9 @@ export NXF_SINGULARITY_CACHEDIR='/work/apoletti/2_SingularityImages/'
 
 if [[ $- == *i* ]] ; then 
 	# Source rye
-	source "/home/apoletti/.rye/env"
+	if [ -f "$FILE" ]; then 
+		source "/home/apoletti/.rye/env"
+	fi
 
 	alias l="eza -l -a --group-directories-first -H --color=always "
 	alias ll="eza -l -a --group-directories-first -H --total-size --color=always "
@@ -21,10 +23,14 @@ if [[ $- == *i* ]] ; then
 
 	# Open fish at the start of an interactive session
 	#
-	if [ "${FISH_VERSION:-unset}" = "unset" ] ; then
-		export SHELL='fish'
-		[ -z "$FISH_VERSION" ] && exec $SHELL -l
+	if [ "${FISH_VERSION:-unset}" = "unset" ]; then
+		if [ command -v fish 2>&1 >/dev/null ]; then
+			export SHELL='fish'
+			[ -z "$FISH_VERSION" ] && exec $SHELL -l
+		fi
 	fi
 fi
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi
