@@ -46,6 +46,19 @@ fi
 mv $HOME/.bashrc "$name".bak
 cp .bashrc $HOME/.bashrc
 
+
+name="$HOME/.bash_profile"
+if [[ -e $name.bak || -L $name.bak ]] ; then
+    i=0
+    while [[ -e $name-$i.bak || -L $name-$i.bak ]] ; do
+        let i++
+    done
+    name=$name-$i
+fi
+
+mv $HOME/.bash_profile "$name".bak
+cp .bash_profile $HOME/.bash_profile
+
 # Fish setup
 fish ./2_new_install_setup.fish
 
