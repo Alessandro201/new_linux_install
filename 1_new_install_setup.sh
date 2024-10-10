@@ -30,10 +30,22 @@ source $HOME/.bash_profile
 mkdir -p $HOME/.config/fish/completions/
 rye self completion -s fish > $HOME/.config/fish/completions/rye.fish
 
-
 # Add fish configs and make it start when a new shell opens
-cat ./config.fish > $HOME/.config/fish/config.fish
-echo 'fish' >> $HOME/.bashrc
+cp ./config.fish $HOME/.config/fish/config.fish
 
+# Create backup of bashrc, and add a number to the end if the backup already exists
+name="$HOME/.bashrc"
+if [[ -e $name.bak || -L $name.bak ]] ; then
+    i=0
+    while [[ -e $name-$i.bak || -L $name-$i.bak ]] ; do
+        let i++
+    done
+    name=$name-$i
+fi
+
+mv $HOME/.bashrc "$name".bak
+cp .bashrc $HOME/.bashrc
+
+# Fish setup
 fish ./2_new_install_setup.fish
 

@@ -59,4 +59,6 @@ if status is-interactive
   bind \cb backward-kill-word
 
 
+  pixi completion --shell fish | source
+
 end
