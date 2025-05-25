@@ -1,6 +1,6 @@
 #/bin/bash
 
-# Install pixi
+# Install pixi which will be used as package manager usable without root permissions
 curl -fsSL https://pixi.sh/install.sh | bash
 
 if test -f $HOME/.bash_profile ; then
@@ -32,13 +32,14 @@ if test -f $HOME/.bash_profile ; then
     source $HOME/.bash_profile
 fi
 
+# Add RYE completions to fish
 mkdir -p $HOME/.config/fish/completions/
 rye self completion -s fish > $HOME/.config/fish/completions/rye.fish
 
 # Add fish configs and make it start when a new shell opens
 cp ./config.fish $HOME/.config/fish/config.fish
 
-# Create backup of bashrc, and add a number to the end if the backup already exists
+# Create backup of bashrc, and add a number to the end if the backup already exists, and copy this version of .bashrc to home
 name="$HOME/.bashrc"
 if [[ -e $name.bak || -L $name.bak ]] ; then
     i=0
@@ -47,11 +48,10 @@ if [[ -e $name.bak || -L $name.bak ]] ; then
     done
     name=$name-$i
 fi
-
 mv $HOME/.bashrc "$name".bak
 cp .bashrc $HOME/.bashrc
 
-
+# Same thing as above for .bash_profile
 name="$HOME/.bash_profile"
 if [[ -e $name.bak || -L $name.bak ]] ; then
     i=0
@@ -60,7 +60,6 @@ if [[ -e $name.bak || -L $name.bak ]] ; then
     done
     name=$name-$i
 fi
-
 mv $HOME/.bash_profile "$name".bak
 cp .bash_profile $HOME/.bash_profile
 
