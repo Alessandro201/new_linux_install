@@ -2,10 +2,11 @@
 set --erase fish_greeting
 set fish_greeting
 
-set --export EDITOR "nvim" # or "vim", or "code", etc.
+# Set default editor
+set --export EDITOR "nvim" 
 
+# Commands to execute if the shell is interactive
 if status is-interactive
-  # Commands to run in interactive sessions can go here
   # Aliases
   alias l="eza -l -a --group-directories-first -H --time-style "long-iso" "
 
@@ -35,6 +36,9 @@ if status is-interactive
   # Change how files are previewed when using fzf.fish
   set fzf_preview_file_cmd bat --color=always
 
+  # CTRL+V to open fzf with current environment variables
+  # CTRL+F to search files in current directory
+  # CTRL+O to open fzf with current processes
   fzf_configure_bindings --processes=\e\co
   fzf_configure_bindings --variables=\e\cv
   fzf_configure_bindings --directory=\cf
@@ -52,13 +56,13 @@ if status is-interactive
   set -g theme_nerd_fonts yes
   set -g theme_color_scheme dark
 
-  # Keybindings
+  # Keybindings to delete words by pressing ctrl+backspace and something else which I don't remember
   bind \e\[3\;5~ kill-word
   bind \b backward-kill-word
   bind \cw kill-word
   bind \cb backward-kill-word
 
-
+  # Add pixi completions to fish
   pixi completion --shell fish | source
 
 end
