@@ -4,13 +4,13 @@
 set -Ua fish_user_paths "$HOME/.rye/shims"
 
 
-# Install fisher
+# Install fisher to manage fish plugins
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 
-# install fish.fzf
+# install fish.fzf containing fzf configurations for fish
 fisher install PatrickF1/fzf.fish
 
-# Install ohmyfish
+# Install ohmyfish to manage fish themes
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
 # Install the theme
